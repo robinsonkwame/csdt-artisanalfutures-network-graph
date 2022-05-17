@@ -138,6 +138,13 @@ class App:
             result = tx.run(
                 cypher, uri_set=uri_set 
             )
+    @staticmethod
+    def wn_interface(call="synsets"):
+        # a better way to handle custom changes to uri below
+        # for streamlit; streamlit doesn't like wordnet's need for
+        # sql database access?
+        pass # todo
+
 
     @staticmethod
     def _locally_map_phrase_to_uris(the_full_phrase, kind_of_phrase="principle"):
@@ -162,7 +169,7 @@ class App:
         """
         print(the_full_phrase + ' ' + kind_of_phrase)
 
-        en = wn.Wordnet('oewn:2021')
+        #en = wn_interface(call="stub") #wn.Wordnet('oewn:2021')
 
         PREFIX = "https://en-word.net/id/"
         phrases_and_words_to_look_up =\
@@ -175,10 +182,10 @@ class App:
                 this_pos_lookup_order = ['a', 'v', 'n']# did ['n', 'v', 'a']?
             # assert isinstance(list, this_pos_lookup_order)
             for pos in this_pos_lookup_order:
-                a_potential_canonical_word = wn.synsets(word, pos=pos)
+                a_potential_canonical_word = "wordnet_uri_placeholder" #wn.synsets(word, pos=pos)
                 if a_potential_canonical_word:
                     the_uris.append(
-                        PREFIX+a_potential_canonical_word[0].id
+                        PREFIX+a_potential_canonical_word
                     )
                     break
         return the_uris
