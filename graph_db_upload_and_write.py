@@ -311,7 +311,7 @@ def write_to_graph_db(df):
 NEO4J_BROWSER_CYPHER = "MATCH (n:CraftID)-[r]-(b) RETURN n,r,b LIMIT 2000"
 
 if __name__ == "__main__":
-    uploaded_file = st.file_uploader("Please export and upload a .csv file from the Artisanal Futures Database here")
+    uploaded_file = "https://raw.githubusercontent.com/robinsonkwame/csdt-artisanalfutures-network-graph/main/artisanal%20futures%20database%20%20-%20Sheet1%20-%206-27-2022.csv" #st.file_uploader("Please export and upload a .csv file from the Artisanal Futures Database here")
 
     if uploaded_file is not None:
         df = pd.read_csv(uploaded_file)
